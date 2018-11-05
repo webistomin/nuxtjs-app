@@ -3,7 +3,7 @@
     <section class="intro">
       <h1 class="intro__title text-xs-center">Get the latest tech news!</h1>
     </section>
-    <section class="posts">
+    <section class="featured">
       <v-container
         grid-list-xl
         fluid>
@@ -14,7 +14,7 @@
             v-for="n in 10"
             :key="n"
             :id="n"
-            :thumbnail="'https://picsum.photos/520/190?image=' + n"
+            :thumbnail="'https://picsum.photos/520/190?image=' + n * 5"
             title="Hello"
             preview-text="Hello again"/>
         </v-layout>

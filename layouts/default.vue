@@ -2,21 +2,7 @@
   <v-app
     id="inspire"
     dark>
-    <v-toolbar
-      app
-      fixed
-      clipped-left>
-      <v-toolbar-title>Application</v-toolbar-title>
-      <v-spacer/>
-      <v-toolbar-items>
-        <v-btn
-          flat
-          nuxt
-          to="/users">Link One</v-btn>
-        <v-btn flat>Link Two</v-btn>
-        <v-btn flat>Link Three</v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
+    <navigation/>
     <v-content>
       <v-container
         fluid
@@ -35,5 +21,8 @@
 </template>
 
 <script>
-export default {}
+import Navigation from '../components/Navigation/Navigation'
+export default {
+  components: { Navigation }
+}
 </script>
