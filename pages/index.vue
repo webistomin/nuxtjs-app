@@ -1,10 +1,5 @@
 <template>
-  <v-layout
-    column
-    justify-center
-    align-center>
-    <h1>Hello</h1>
-  </v-layout>
+  <h1>Hi</h1>
 </template>
 
 <script>
@@ -15,6 +10,9 @@ export default {
   components: {
     Logo,
     VuetifyLogo
-  }
+  },
+  data: () => ({
+    drawer: null
+  })
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <h1>Hello user</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nisi.</p>
 </template>
 
 <script>
