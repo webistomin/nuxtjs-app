@@ -2,8 +2,8 @@
   <section class="admin">
     <h1 class="text-xs-center">Admin page</h1>
     <div class="admin__block mb-5">
-      <v-btn 
-        color="success" 
+      <v-btn
+        color="success"
         to="/admin/new-post">Create a post</v-btn>
     </div>
     <div class="admin-block">
@@ -30,6 +30,7 @@
 <script>
 import PostPreview from '../../components/Posts/PostPreview'
 export default {
+  layout: 'admin',
   name: 'Index',
   components: { PostPreview }
 }
