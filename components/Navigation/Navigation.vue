@@ -1,5 +1,6 @@
 <template>
   <v-toolbar
+    :flat="true"
     app
     fixed
     clipped-left>

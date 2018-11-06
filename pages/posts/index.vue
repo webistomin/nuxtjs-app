@@ -28,6 +28,9 @@ export default {
     getLoadedPosts() {
       return this.$store.getters.getLoadedPosts
     }
+  },
+  head: {
+    title: 'All posts / Habr'
   }
 }
 </script>

@@ -32,6 +32,9 @@ export default {
     getLoadedPosts() {
       return this.$store.getters.getLoadedPosts
     }
+  },
+  head: {
+    title: 'Latest tech news / Habr'
   }
 }
 </script>
