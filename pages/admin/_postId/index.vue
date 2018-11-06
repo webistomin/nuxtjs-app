@@ -50,7 +50,6 @@
 import axios from 'axios'
 export default {
   name: 'Index',
-  layout: 'admin',
   data() {
     return {
       title: '',
@@ -59,6 +58,18 @@ export default {
       description: ''
     }
   },
+  mounted() {
+    return axios
+      .get('https://nuxt-blog-85622.firebaseio.com/posts.json')
+      .then(response => {
+        this.title = response.data[this.$route.params.postId].title
+        this.thumbnail = response.data[this.$route.params.postId].thumbnail
+        this.author = response.data[this.$route.params.postId].author
+        this.description = response.data[this.$route.params.postId].description
+        response.data
+      })
+      .catch(error => console.log(error))
+  },
   methods: {
     onSubmit() {
       const postData = {
@@ -66,16 +77,12 @@ export default {
         thumbnail: 'http://lorempixel.com/400/200/',
         author: this.author,
         description: this.description,
-        updatedDate: new Date()
+        updatedDate: new Date(),
+        id: this.$route.params.postId
       }
-      axios
-        .put(
-          `https://nuxt-blog-85622.firebaseio.com/posts/${
-            this.$route.params.postId
-          }.json`,
-          postData
-        )
-        .then(response => console.log(response))
+      this.$store
+        .dispatch('editPost', postData)
+        .then(() => this.$router.push('/admin'))
     }
   }
 }

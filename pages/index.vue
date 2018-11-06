@@ -11,7 +11,7 @@
           row
           wrap>
           <post-preview
-            v-for="post in getLoadedPost"
+            v-for="post in getLoadedPosts.slice(0,5)"
             :key="post.id"
             :id="post.id"
             :thumbnail="post.thumbnail"
@@ -29,8 +29,8 @@ import PostPreview from '../components/Posts/PostPreview'
 export default {
   components: { PostPreview },
   computed: {
-    getLoadedPost() {
-      return this.$store.getters.getLoadedPost
+    getLoadedPosts() {
+      return this.$store.getters.getLoadedPosts
     }
   }
 }

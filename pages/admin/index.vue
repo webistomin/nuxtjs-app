@@ -15,7 +15,7 @@
           row
           wrap>
           <post-preview
-            v-for="post in getLoadedPost"
+            v-for="post in getLoadedPosts"
             :is-admin="true"
             :key="post.id"
             :id="post.id"
@@ -31,12 +31,11 @@
 <script>
 import PostPreview from '../../components/Posts/PostPreview'
 export default {
-  layout: 'admin',
   name: 'Index',
   components: { PostPreview },
   computed: {
-    getLoadedPost() {
-      return this.$store.getters.getLoadedPost
+    getLoadedPosts() {
+      return this.$store.getters.getLoadedPosts
     }
   }
 }

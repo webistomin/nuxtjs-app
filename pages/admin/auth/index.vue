@@ -38,7 +38,6 @@
 <script>
 export default {
   name: 'Auth',
-  layout: 'admin',
   data: () => ({
     isLogin: true,
     valid: false,

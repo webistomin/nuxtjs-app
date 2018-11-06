@@ -8,7 +8,7 @@
         to="/"
         class="pointer"
         tag="h1">
-        Blog
+        Habr
       </router-link>
     </v-toolbar-title>
     <v-spacer/>

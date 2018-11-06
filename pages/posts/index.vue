@@ -8,12 +8,12 @@
         row
         wrap>
         <post-preview
-          v-for="n in 30"
-          :key="n"
-          :id="n"
-          :thumbnail="'https://picsum.photos/520/190?image=1'"
-          title="Hello"
-          preview-text="Hello again"/>
+          v-for="post in getLoadedPosts"
+          :key="post.id"
+          :id="post.id"
+          :thumbnail="post.thumbnail"
+          :title="post.title"
+          :preview-text="post.description"/>
       </v-layout>
     </v-container>
   </section>
@@ -23,9 +23,17 @@
 import PostPreview from '../../components/Posts/PostPreview'
 export default {
   name: 'Index',
-  components: { PostPreview }
+  components: { PostPreview },
+  computed: {
+    getLoadedPosts() {
+      return this.$store.getters.getLoadedPosts
+    }
+  }
 }
 </script>
 
 <style scoped>
+.post-list {
+  width: 100%;
+}
 </style>

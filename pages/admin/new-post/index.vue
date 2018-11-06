@@ -68,10 +68,9 @@ export default {
         description: this.description,
         updatedDate: new Date()
       }
-      axios
-        .post('https://nuxt-blog-85622.firebaseio.com/posts.json', postData)
-        .then(result => console.log(result))
-        .catch(e => console.log(e))
+      this.$store.dispatch('addPost', postData).then(() => {
+        this.$router.push('/admin')
+      })
     }
   }
 }
