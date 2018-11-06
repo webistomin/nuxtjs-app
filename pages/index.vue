@@ -16,7 +16,7 @@
             :id="post.id"
             :thumbnail="post.thumbnail"
             :title="post.title"
-            :preview-text="post.previewText"/>
+            :preview-text="post.description"/>
         </v-layout>
       </v-container>
     </section>
@@ -28,10 +28,6 @@ import PostPreview from '../components/Posts/PostPreview'
 
 export default {
   components: { PostPreview },
-  data: () => ({
-    drawer: null,
-    posts: []
-  }),
   computed: {
     getLoadedPost() {
       return this.$store.getters.getLoadedPost

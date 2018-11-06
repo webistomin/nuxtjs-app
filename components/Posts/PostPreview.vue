@@ -4,7 +4,7 @@
     sm6
     md4>
     <v-card
-      :to="'posts/' + id"
+      :to="isAdmin ? 'admin/' + id : 'posts/' + id"
       nuxt>
       <v-img
         :src="thumbnail"
@@ -24,8 +24,12 @@
 export default {
   name: 'PostPreview',
   props: {
+    isAdmin: {
+      type: Boolean,
+      default: false
+    },
     id: {
-      type: Number,
+      type: String,
       required: true
     },
     title: {

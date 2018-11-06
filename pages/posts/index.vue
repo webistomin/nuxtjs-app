@@ -11,7 +11,7 @@
           v-for="n in 30"
           :key="n"
           :id="n"
-          :thumbnail="'https://picsum.photos/520/190?image=' + n * 5"
+          :thumbnail="'https://picsum.photos/520/190?image=1'"
           title="Hello"
           preview-text="Hello again"/>
       </v-layout>

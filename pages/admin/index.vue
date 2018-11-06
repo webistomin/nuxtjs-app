@@ -15,12 +15,13 @@
           row
           wrap>
           <post-preview
-            v-for="n in 10"
-            :key="n"
-            :id="n"
-            :thumbnail="'https://picsum.photos/520/190?image=' + n * 5"
-            title="Hello"
-            preview-text="Hello again"/>
+            v-for="post in getLoadedPost"
+            :is-admin="true"
+            :key="post.id"
+            :id="post.id"
+            :thumbnail="post.thumbnail"
+            :title="post.title"
+            :preview-text="post.description"/>
         </v-layout>
       </v-container>
     </div>
@@ -32,9 +33,17 @@ import PostPreview from '../../components/Posts/PostPreview'
 export default {
   layout: 'admin',
   name: 'Index',
-  components: { PostPreview }
+  components: { PostPreview },
+  computed: {
+    getLoadedPost() {
+      return this.$store.getters.getLoadedPost
+    }
+  }
 }
 </script>
 
 <style scoped>
+.admin {
+  width: 100%;
+}
 </style>

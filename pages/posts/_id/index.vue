@@ -4,15 +4,15 @@
       xs12>
       <v-card>
         <v-img
-          :src="getPost.thumbnail"
+          :src="loadedPost.thumbnail"
           aspect-ratio="2.75"
         />
         <v-card-title primary-title>
           <div>
-            <h3 class="headline mb-0">{{ getPost.title }}</h3>
-            <div class="mb-5">{{ getPost.content }}</div>
-            <time>Last updated on: {{ getPost.updatedDate }}</time>
-            <div>Author: {{ getPost.author }}</div>
+            <h3 class="headline mb-0">{{ loadedPost.title }}</h3>
+            <div class="mb-5">{{ loadedPost.description }}</div>
+            <time>Last updated on: {{ loadedPost.updatedDate }}</time>
+            <div>Author: {{ loadedPost.author }}</div>
           </div>
         </v-card-title>
       </v-card>
@@ -21,12 +21,20 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Index',
-  computed: {
-    getPost() {
-      return this.$store.getters.getLoadedPost
-    }
+  asyncData(context) {
+    return axios
+      .get(
+        `https://nuxt-blog-85622.firebaseio.com/posts/${context.params.id}.json`
+      )
+      .then(response => {
+        return {
+          loadedPost: response.data
+        }
+      })
+      .catch(e => context.error(e))
   }
 }
 </script>
