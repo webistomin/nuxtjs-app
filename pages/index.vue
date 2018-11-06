@@ -11,12 +11,12 @@
           row
           wrap>
           <post-preview
-            v-for="n in 10"
-            :key="n"
-            :id="n"
-            :thumbnail="'https://picsum.photos/520/190?image=' + n * 5"
-            title="Hello"
-            preview-text="Hello again"/>
+            v-for="post in getLoadedPost"
+            :key="post.id"
+            :id="post.id"
+            :thumbnail="post.thumbnail"
+            :title="post.title"
+            :preview-text="post.previewText"/>
         </v-layout>
       </v-container>
     </section>
@@ -29,7 +29,13 @@ import PostPreview from '../components/Posts/PostPreview'
 export default {
   components: { PostPreview },
   data: () => ({
-    drawer: null
-  })
+    drawer: null,
+    posts: []
+  }),
+  computed: {
+    getLoadedPost() {
+      return this.$store.getters.getLoadedPost
+    }
+  }
 }
 </script>
