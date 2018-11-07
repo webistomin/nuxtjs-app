@@ -9,7 +9,6 @@
         :rules="emailRules"
         label="E-mail"
         required
-        color="white"
       />
       <v-text-field
         v-model="password"
@@ -17,7 +16,6 @@
         :counter="10"
         label="Password"
         required
-        color="white"
       />
       <v-btn
         :disabled="!valid"
@@ -39,6 +37,9 @@
 <script>
 export default {
   name: 'Auth',
+  head: {
+    title: 'Login, Sign Up / Habr'
+  },
   data: () => ({
     isLogin: true,
     valid: false,
@@ -80,5 +81,9 @@ export default {
 }
 .auth__form {
   width: 100%;
+}
+.v-btn {
+  margin: 0 !important;
+  margin-right: 10px !important;
 }
 </style>

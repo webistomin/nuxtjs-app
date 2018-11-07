@@ -14,26 +14,33 @@
             v-model="title"
             label="Title"
             required
-            color="white"
           />
-          <v-text-field
-            v-model="thumbnail"
-            label="Thubnail"
-            required
-            color="white"
-          />
+          <!--<v-text-field-->
+          <!--v-model="thumbnail"-->
+          <!--label="Thumbnail"-->
+          <!--required-->
+          <!--/>-->
           <v-text-field
             v-model="author"
             label="Author"
             required
-            color="white"
           />
           <v-textarea
             v-model="description"
             name="input-7-1"
             label="Description"
-            color="white"
           />
+          <v-flex class="mb-3">
+            <v-btn
+              color="indigo darken-4"
+              dark>Upload image</v-btn>
+          </v-flex>
+          <v-flex class="mb-5">
+            <img
+              src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+              alt="Preview image"
+              height="200">
+          </v-flex>
           <v-btn
             color="success"
             type="submit">Save</v-btn>
@@ -51,6 +58,9 @@
 export default {
   name: 'Index',
   middleware: 'auth',
+  head: {
+    title: 'Create new post / Habr'
+  },
   data() {
     return {
       title: '',
@@ -83,5 +93,11 @@ export default {
 }
 .new-post__form {
   width: 100%;
+}
+.v-btn {
+  margin-left: 0 !important;
+}
+.container.grid-list-xl .layout .flex {
+  padding: 0 !important;
 }
 </style>

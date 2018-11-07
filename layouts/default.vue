@@ -1,7 +1,5 @@
 <template>
-  <v-app
-    id="inspire"
-    dark>
+  <v-app>
     <navigation/>
     <v-content>
       <v-container
@@ -12,8 +10,10 @@
         </v-layout>
       </v-container>
     </v-content>
-    <v-footer>
-      <span>&copy; 2017</span>
+    <v-footer
+      color="#548eaa"
+      dark>
+      <span>&copy; 2018</span>
     </v-footer>
     <template v-if="error">
       <v-snackbar
@@ -34,8 +34,6 @@
 </template>
 
 <script>
-import * as fb from 'firebase'
-import 'firebase/auth'
 import Navigation from '../components/Navigation/Navigation'
 export default {
   components: { Navigation },

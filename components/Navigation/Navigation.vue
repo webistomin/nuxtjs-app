@@ -3,7 +3,9 @@
     :flat="true"
     app
     fixed
-    clipped-left>
+    clipped-left
+    color="#548eaa"
+    dark>
     <v-toolbar-title class="pointer">
       <router-link
         to="/"

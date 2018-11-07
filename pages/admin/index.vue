@@ -4,10 +4,16 @@
     <div class="admin__block mb-5">
       <v-btn
         color="success"
-        to="/admin/new-post">Create a post</v-btn>
+        to="/admin/new-post">Create a post
+      </v-btn>
+      <v-btn
+        color="error"
+        @click="logout">
+        Logout
+      </v-btn>
     </div>
     <div class="admin-block">
-      <h2>Existing posts</h2>
+      <h2 class="admin-block__title">Existing posts</h2>
       <v-container
         grid-list-xl
         fluid>
@@ -32,11 +38,20 @@
 import PostPreview from '../../components/Posts/PostPreview'
 export default {
   name: 'Index',
+  head: {
+    title: 'Admin page / Habr'
+  },
   components: { PostPreview },
   middleware: 'auth',
   computed: {
     getLoadedPosts() {
       return this.$store.getters.getLoadedPosts
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logoutUser')
+      this.$router.push('/')
     }
   }
 }
@@ -45,5 +60,8 @@ export default {
 <style scoped>
 .admin {
   width: 100%;
+}
+.admin-block__title {
+  padding: 16px;
 }
 </style>

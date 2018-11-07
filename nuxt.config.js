@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const axios = require('axios')
 
 module.exports = {
   mode: 'universal',
@@ -71,5 +72,21 @@ module.exports = {
     name: 'fade',
     mode: 'out-in'
   },
-  vendor: ['firebase']
+  vendor: ['firebase'],
+  generate: {
+    routes: function() {
+      return axios
+        .get('https://nuxt-blog-85622.firebaseio.com/posts.json')
+        .then(res => {
+          const routes = []
+          for (const key in res.data) {
+            routes.push({
+              route: `/posts/${key}`,
+              payload: { postData: res.data[key] }
+            })
+          }
+          return routes
+        })
+    }
+  }
 }

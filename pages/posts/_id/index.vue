@@ -24,7 +24,17 @@
 import axios from 'axios'
 export default {
   name: 'Index',
+  head() {
+    return {
+      title: `${this.loadedPost.title} / Habr`
+    }
+  },
   asyncData(context) {
+    if (context.payload) {
+      return {
+        loadedPost: context.payload.postData
+      }
+    }
     return axios
       .get(
         `https://nuxt-blog-85622.firebaseio.com/posts/${context.params.id}.json`

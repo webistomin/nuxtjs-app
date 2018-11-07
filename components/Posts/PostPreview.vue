@@ -5,7 +5,9 @@
     md4>
     <v-card
       :to="isAdmin ? 'admin/' + id : 'posts/' + id"
-      nuxt>
+      class="card"
+      nuxt
+      tile>
       <v-img
         :src="thumbnail"
         aspect-ratio="2.75"
@@ -13,7 +15,7 @@
       <v-card-title primary-title>
         <div>
           <h3 class="headline mb-0">{{ title }}</h3>
-          <div>{{ previewText }}</div>
+          <div class="card__preview">{{ previewText }}</div>
         </div>
       </v-card-title>
     </v-card>
@@ -49,4 +51,13 @@ export default {
 </script>
 
 <style scoped>
+.card {
+  overflow: hidden;
+}
+.card__preview {
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 </style>

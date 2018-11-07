@@ -51,6 +51,9 @@ import axios from 'axios'
 export default {
   name: 'Index',
   middleware: 'auth',
+  head: {
+    title: 'Edit post / Habr'
+  },
   data() {
     return {
       title: '',
