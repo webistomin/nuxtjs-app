@@ -1,5 +1,7 @@
 import Vuex from 'vuex'
 import axios from 'axios'
+import user from './user'
+import shared from './shared'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -61,6 +63,10 @@ const createStore = () => {
       getLoadedPosts(state) {
         return state.loadedPosts
       }
+    },
+    modules: {
+      user,
+      shared
     }
   })
 }

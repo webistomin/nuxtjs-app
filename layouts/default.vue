@@ -17,12 +17,37 @@
       fixed>
       <span>&copy; 2017</span>
     </v-footer>
+    <template v-if="error">
+      <v-snackbar
+        :timeout="5000"
+        :multi-line="true"
+        :value="true"
+        color="error"
+        @input="closeError"
+      >
+        {{ error }}
+        <v-btn
+          flat
+          dark
+          @click.native="closeError">Close</v-btn>
+      </v-snackbar>
+    </template>
   </v-app>
 </template>
 
 <script>
 import Navigation from '../components/Navigation/Navigation'
 export default {
-  components: { Navigation }
+  components: { Navigation },
+  computed: {
+    error() {
+      return this.$store.getters.error
+    }
+  },
+  methods: {
+    closeError() {
+      this.$store.dispatch('clearError')
+    }
+  }
 }
 </script>

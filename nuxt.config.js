@@ -36,7 +36,11 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['@/plugins/vuetify', '@/plugins/date-filter'],
+  plugins: [
+    '@/plugins/vuetify',
+    '@/plugins/date-filter',
+    { src: '@/plugins/firebase', ssr: false }
+  ],
 
   /*
   ** Nuxt.js modules
@@ -66,5 +70,6 @@ module.exports = {
   transition: {
     name: 'fade',
     mode: 'out-in'
-  }
+  },
+  vendor: ['firebase']
 }

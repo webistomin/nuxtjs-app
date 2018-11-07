@@ -2,7 +2,8 @@
   <section class="auth">
     <v-form
       v-model="valid"
-      class="auth__form">
+      class="auth__form"
+      @submit.prevent="onSubmit">
       <v-text-field
         v-model="email"
         :rules="emailRules"
@@ -21,7 +22,7 @@
       <v-btn
         :disabled="!valid"
         color="success"
-        @click="submit"
+        type="submit"
       >
         {{ isLogin ? 'Login' : 'Sign up' }}
       </v-btn>
@@ -51,7 +52,24 @@ export default {
       v => !!v || 'E-mail is required',
       v => /.+@.+/.test(v) || 'E-mail must be valid'
     ]
-  })
+  }),
+  methods: {
+    onSubmit() {
+      const user = {
+        email: this.email,
+        password: this.password
+      }
+      if (this.isLogin) {
+        this.$store.dispatch('loginUser', user).then(() => {
+          this.$router.push('/admin')
+        })
+      } else {
+        this.$store.dispatch('registerUser', user).then(() => {
+          this.$router.push('/admin')
+        })
+      }
+    }
+  }
 }
 </script>
 
