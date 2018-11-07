@@ -11,7 +11,7 @@
           <div>
             <h3 class="headline mb-0">{{ loadedPost.title }}</h3>
             <div class="mb-5">{{ loadedPost.description }}</div>
-            <time>Last updated on: {{ loadedPost.updatedDate }}</time>
+            <time>Last updated on: {{ loadedPost.updatedDate | date }}</time>
             <div>Author: {{ loadedPost.author }}</div>
           </div>
         </v-card-title>
