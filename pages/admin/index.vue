@@ -4,11 +4,18 @@
     <div class="admin__block mb-5">
       <v-btn
         color="success"
-        to="/admin/new-post">Create a post
+        to="/admin/new-post">
+        <v-icon
+          dark
+          left>add</v-icon>
+        Create a post
       </v-btn>
       <v-btn
         color="error"
         @click="logout">
+        <v-icon
+          dark
+          left>lock_open</v-icon>
         Logout
       </v-btn>
     </div>

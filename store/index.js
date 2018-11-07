@@ -42,6 +42,7 @@ const createStore = () => {
           .catch(e => context.error(e))
       },
       async addPost({ commit }, payload) {
+        commit('setLoading', true)
         const imageExt = payload.thumbnail.name.slice(
           payload.thumbnail.name.lastIndexOf('.')
         )
@@ -78,6 +79,7 @@ const createStore = () => {
           id: id,
           thumbnail: thumbnail
         })
+        commit('setLoading', false)
       },
       editPost({ commit }, payload) {
         return axios

@@ -20,6 +20,9 @@
         flat
         nuxt
         to="/posts">
+        <v-icon
+          dark
+          left>message</v-icon>
         Blog
       </v-btn>
       <v-btn
@@ -32,6 +35,9 @@
         flat
         nuxt
         to="/admin">
+        <v-icon
+          dark
+          left>person</v-icon>
         Admin
       </v-btn>
     </v-toolbar-items>

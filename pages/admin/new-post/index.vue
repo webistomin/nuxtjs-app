@@ -15,11 +15,6 @@
             label="Title"
             required
           />
-          <!--<v-text-field-->
-          <!--v-model="thumbnail"-->
-          <!--label="Thumbnail"-->
-          <!--required-->
-          <!--/>-->
           <v-text-field
             v-model="author"
             label="Author"
@@ -32,9 +27,15 @@
           />
           <v-flex class="mb-3">
             <v-btn
-              color="indigo darken-4"
+              color="info"
               dark
-              @click="triggerUpload">Upload image
+              @click="triggerUpload">
+              <v-icon
+                left
+                dark>
+                cloud_upload
+              </v-icon>
+              Upload image
             </v-btn>
             <input
               ref="fileInput"
@@ -51,16 +52,24 @@
               height="200">
           </v-flex>
           <v-btn
+            :loading="loading"
             color="success"
-            type="submit">Save</v-btn>
+            type="submit">
+            <v-icon
+              dark
+              left>check_circle</v-icon>
+            Save</v-btn>
           <v-btn
             color="warning"
-            to="/admin">Cancel</v-btn>
+            to="/admin">
+            <v-icon
+              dark
+              left>remove_circle</v-icon>
+            Cancel</v-btn>
         </form>
       </v-layout>
     </v-container>
   </section>
-
 </template>
 
 <script>
@@ -77,6 +86,11 @@ export default {
       author: '',
       description: '',
       image: null
+    }
+  },
+  computed: {
+    loading() {
+      return this.$store.getters.loading
     }
   },
   methods: {
