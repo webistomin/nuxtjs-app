@@ -33,11 +33,20 @@
           <v-flex class="mb-3">
             <v-btn
               color="indigo darken-4"
-              dark>Upload image</v-btn>
+              dark
+              @click="triggerUpload">Upload image
+            </v-btn>
+            <input
+              ref="fileInput"
+              type="file"
+              style="display: none"
+              accept="image/*"
+              @change="onFileChange">
           </v-flex>
           <v-flex class="mb-5">
             <img
-              src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+              v-if="thumbnail"
+              :src="thumbnail"
               alt="Preview image"
               height="200">
           </v-flex>
@@ -66,14 +75,15 @@ export default {
       title: '',
       thumbnail: '',
       author: '',
-      description: ''
+      description: '',
+      image: null
     }
   },
   methods: {
     onSubmit() {
       const postData = {
         title: this.title,
-        thumbnail: 'http://lorempixel.com/400/200/',
+        thumbnail: this.image,
         author: this.author,
         description: this.description,
         updatedDate: new Date()
@@ -81,6 +91,18 @@ export default {
       this.$store.dispatch('addPost', postData).then(() => {
         this.$router.push('/admin')
       })
+    },
+    triggerUpload() {
+      this.$refs.fileInput.click()
+    },
+    onFileChange(event) {
+      const file = event.target.files[0]
+      const reader = new FileReader()
+      reader.onload = e => {
+        this.thumbnail = reader.result
+      }
+      reader.readAsDataURL(file)
+      this.image = file
     }
   }
 }

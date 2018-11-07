@@ -2,6 +2,9 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import user from './user'
 import shared from './shared'
+import firebase from 'firebase/app'
+import 'firebase/storage'
+import 'firebase/database'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -38,14 +41,43 @@ const createStore = () => {
           })
           .catch(e => context.error(e))
       },
-      addPost({ commit }, payload) {
-        return axios
-          .post('https://nuxt-blog-85622.firebaseio.com/posts.json', payload)
+      async addPost({ commit }, payload) {
+        const imageExt = payload.thumbnail.name.slice(
+          payload.thumbnail.name.lastIndexOf('.')
+        )
+        let id = null
+        await axios
+          .post('https://nuxt-blog-85622.firebaseio.com/posts.json', {
+            title: payload.title,
+            author: payload.author,
+            description: payload.description,
+            updatedDate: payload.updatedDate,
+            thumbnail: 'img'
+          })
           .then(response => {
-            console.log(response)
-            commit('addPost', { ...payload, id: response.data.name })
+            id = response.data.name
           })
           .catch(e => console.log(e))
+        const fileData = await firebase
+          .storage()
+          .ref(`bg/${id}${imageExt}`)
+          .put(payload.thumbnail)
+        const thumbnail = await fileData.ref.getDownloadURL()
+        await firebase
+          .database()
+          .ref('posts')
+          .child(id)
+          .update({
+            thumbnail
+          })
+        commit('addPost', {
+          title: payload.title,
+          author: payload.author,
+          description: payload.description,
+          updatedDate: payload.updatedDate,
+          id: id,
+          thumbnail: thumbnail
+        })
       },
       editPost({ commit }, payload) {
         return axios
