@@ -23,7 +23,6 @@
 import PostPreview from '../../components/Posts/PostPreview'
 export default {
   name: 'Index',
-  middleware: 'log',
   components: { PostPreview },
   computed: {
     getLoadedPosts() {

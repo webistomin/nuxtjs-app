@@ -12,9 +12,7 @@
         </v-layout>
       </v-container>
     </v-content>
-    <v-footer
-      app
-      fixed>
+    <v-footer>
       <span>&copy; 2017</span>
     </v-footer>
     <template v-if="error">
@@ -36,12 +34,17 @@
 </template>
 
 <script>
+import * as fb from 'firebase'
+import 'firebase/auth'
 import Navigation from '../components/Navigation/Navigation'
 export default {
   components: { Navigation },
   computed: {
     error() {
       return this.$store.getters.error
+    },
+    isUserLoggedIn() {
+      return this.$store.getters.isUserLoggedIn
     }
   },
   methods: {

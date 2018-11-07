@@ -33,6 +33,7 @@ import PostPreview from '../../components/Posts/PostPreview'
 export default {
   name: 'Index',
   components: { PostPreview },
+  middleware: 'auth',
   computed: {
     getLoadedPosts() {
       return this.$store.getters.getLoadedPosts

@@ -48,9 +48,9 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'Index',
+  middleware: 'auth',
   data() {
     return {
       title: '',
