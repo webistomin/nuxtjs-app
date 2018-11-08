@@ -43,12 +43,13 @@ const createStore = () => {
           .catch(e => context.error(e))
       },
       async addPost({ commit }, payload) {
+        console.log(payload)
         commit('setLoading', true)
         const imageExt = payload.thumbnail.name.slice(
           payload.thumbnail.name.lastIndexOf('.')
         )
         let id = null
-        axios
+        await axios
           .post('https://nuxt-blog-85622.firebaseio.com/posts.json', {
             title: payload.title,
             author: payload.author,
@@ -60,11 +61,14 @@ const createStore = () => {
             id = response.data.name
           })
           .catch(e => console.log(e))
+        console.log(id)
         const fileData = await firebase
           .storage()
           .ref(`bg/${id}${imageExt}`)
           .put(payload.thumbnail)
+        console.log(fileData)
         const thumbnail = await fileData.ref.getDownloadURL()
+        console.log(thumbnail)
         await firebase
           .database()
           .ref('posts')

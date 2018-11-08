@@ -11,7 +11,7 @@
           row
           wrap>
           <post-preview
-            v-for="post in getLoadedPosts.slice(0,5)"
+            v-for="post in getLoadedPosts.slice(0,6)"
             :key="post.id"
             :id="post.id"
             :thumbnail="post.thumbnail"

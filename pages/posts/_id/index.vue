@@ -10,7 +10,9 @@
         <v-card-title primary-title>
           <div>
             <h3 class="headline mb-0">{{ loadedPost.title }}</h3>
-            <div class="mb-5">{{ loadedPost.description }}</div>
+            <div
+              class="mb-5"
+              v-html="loadedPost.description"/>
             <time>Last updated on: {{ loadedPost.updatedDate | date }}</time>
             <div>Author: {{ loadedPost.author }}</div>
           </div>
