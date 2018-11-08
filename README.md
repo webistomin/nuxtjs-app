@@ -1,7 +1,7 @@
 # Nuxt.js Blog
-> Новостной сайт с возможностью создания и редактирования статей 
+> Новостной сайт с возможностью создания и редактирования статей. Реализован с помощью Vue, Nuxt.js и Firebase 
 
-link
+https://nuxt-blog-85622.firebaseapp.com
 
 [![Build status][travis-image]][travis-url] [![dependencies Status](https://david-dm.org/webistomin/nuxtjs-app/status.svg)](https://david-dm.org/webistomin/nuxtjs-app) [![Dependency status][dependency-image]][dependency-url] 
 
@@ -39,9 +39,6 @@ link
 </table>
 
 Предполагается, что все команды вы выполняете в bash (для OSX и Linux это самый обычный встроенный терминал, для Windows это, к примеру, Git Bash). В Windows установку пакетов (npm i) нужно выполять в терминале, запущенном от имени администратора.
-
-## Техническое задание 
-<a href="https://gist.github.com/krambertech/ecb3890824fd7ada0f4ec1ff55125758" target="_blank">Открыть gist</a>
 
 ## Используемые технологии
 
