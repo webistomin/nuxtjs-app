@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import user from './user'
@@ -22,7 +23,7 @@ const createStore = () => {
         const postIndex = state.loadedPosts.findIndex(
           post => post.id === payload.id
         )
-        state.loadedPosts[postIndex] = payload
+        Vue.set(state.loadedPosts, postIndex, payload)
       }
     },
     actions: {
@@ -53,7 +54,7 @@ const createStore = () => {
             author: payload.author,
             description: payload.description,
             updatedDate: payload.updatedDate,
-            thumbnail: 'img'
+            thumbnail: ''
           })
           .then(response => {
             id = response.data.name
@@ -82,15 +83,20 @@ const createStore = () => {
         commit('setLoading', false)
       },
       async editPost({ commit }, payload) {
+        let imageExt = null
+        let fileData = null
+        let thumbnail = null
         commit('setLoading', true)
-        const imageExt = payload.thumbnail.name.slice(
-          payload.thumbnail.name.lastIndexOf('.')
-        )
-        const fileData = await firebase
-          .storage()
-          .ref(`bg/${payload.id}${imageExt}`)
-          .put(payload.thumbnail)
-        const thumbnail = await fileData.ref.getDownloadURL()
+        if (payload.thumbnail !== null) {
+          imageExt = payload.thumbnail.name.slice(
+            payload.thumbnail.name.lastIndexOf('.')
+          )
+          fileData = await firebase
+            .storage()
+            .ref(`bg/${payload.id}${imageExt}`)
+            .put(payload.thumbnail)
+          thumbnail = await fileData.ref.getDownloadURL()
+        }
         axios
           .put(
             `https://nuxt-blog-85622.firebaseio.com/posts/${payload.id}.json`,

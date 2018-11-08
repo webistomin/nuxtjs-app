@@ -39,7 +39,6 @@
             </v-btn>
             <input
               ref="fileInput"
-              required
               type="file"
               style="display: none"
               accept="image/*"
@@ -112,15 +111,15 @@ export default {
     onSubmit() {
       const postData = {
         title: this.title,
-        thumbnail: this.image || this.thumbnail,
+        thumbnail: this.image,
         author: this.author,
         description: this.description,
         updatedDate: new Date(),
         id: this.$route.params.postId
       }
-      this.$store
-        .dispatch('editPost', postData)
-        .then(() => this.$router.push('/admin'))
+      this.$store.dispatch('editPost', postData).then(() => {
+        this.$router.push('/admin')
+      })
     },
     triggerUpload() {
       this.$refs.fileInput.click()
