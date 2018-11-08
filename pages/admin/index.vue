@@ -19,8 +19,8 @@
         Logout
       </v-btn>
     </div>
-    <div class="admin-block">
-      <h2 class="admin-block__title">Existing posts</h2>
+    <div class="admin__block">
+      <h2 class="admin__title">Existing posts</h2>
       <v-container
         grid-list-xl
         fluid>
@@ -68,7 +68,10 @@ export default {
 .admin {
   width: 100%;
 }
-.admin-block__title {
-  padding: 16px;
+.admin__title {
+  margin-bottom: 20px;
+}
+.container.grid-list-xl.fluid {
+  padding: 0 !important;
 }
 </style>

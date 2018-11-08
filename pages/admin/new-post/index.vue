@@ -7,21 +7,28 @@
       <v-layout
         row
         wrap>
-        <form
+        <v-form
+          v-model="valid"
           class="new-post__form"
           @submit.prevent="onSubmit()">
           <v-text-field
             v-model="title"
+            :rules="titleRules"
+            :validate-on-blur="true"
             label="Title"
             required
           />
           <v-text-field
             v-model="author"
+            :rules="authorRules"
+            :validate-on-blur="true"
             label="Author"
             required
           />
           <v-textarea
             v-model="description"
+            :rules="descriptionRules"
+            :validate-on-blur="true"
             name="input-7-1"
             label="Description"
           />
@@ -39,6 +46,8 @@
             </v-btn>
             <input
               ref="fileInput"
+              :rules="fileRules"
+              required
               type="file"
               style="display: none"
               accept="image/*"
@@ -48,11 +57,13 @@
             <img
               v-if="thumbnail"
               :src="thumbnail"
+              class="new-post__img"
               alt="Preview image"
               height="200">
           </v-flex>
           <v-btn
             :loading="loading"
+            :disabled="!valid || !thumbnail"
             color="success"
             type="submit">
             <v-icon
@@ -66,7 +77,7 @@
               dark
               left>remove_circle</v-icon>
             Cancel</v-btn>
-        </form>
+        </v-form>
       </v-layout>
     </v-container>
   </section>
@@ -82,10 +93,22 @@ export default {
   data() {
     return {
       title: '',
-      thumbnail: '',
+      thumbnail: null,
       author: '',
       description: '',
-      image: null
+      image: null,
+      valid: false,
+      titleRules: [
+        v => !!v || 'Title is required',
+        v => v.length >= 5 || 'Title must be more or equal than 5 characters'
+      ],
+      authorRules: [
+        v => !!v || 'Author name is required',
+        v =>
+          v.length >= 5 || 'Author name must be more or equal than 5 characters'
+      ],
+      descriptionRules: [v => !!v || 'Description is required'],
+      fileRules: [v => !!v || 'Image is required']
     }
   },
   computed: {
@@ -135,5 +158,9 @@ export default {
 }
 .container.grid-list-xl .layout .flex {
   padding: 0 !important;
+}
+.new-post__img {
+  max-width: 100%;
+  vertical-align: top;
 }
 </style>

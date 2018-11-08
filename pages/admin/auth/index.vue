@@ -16,18 +16,26 @@
         :counter="10"
         label="Password"
         required
+        class="mb-5"
       />
       <v-btn
         :disabled="!valid"
         color="success"
         type="submit"
       >
+        <v-icon
+          dark
+          left>keyboard_tab</v-icon>
         {{ isLogin ? 'Login' : 'Sign up' }}
       </v-btn>
       <v-btn
         color="warning"
         @click="isLogin = !isLogin"
-      >Switch to
+      >
+        <v-icon
+          dark
+          left>cached</v-icon>
+        Switch to
         {{ isLogin ? 'Sign up' : 'Login' }}
       </v-btn>
     </v-form>

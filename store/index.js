@@ -47,7 +47,7 @@ const createStore = () => {
           payload.thumbnail.name.lastIndexOf('.')
         )
         let id = null
-        await axios
+        axios
           .post('https://nuxt-blog-85622.firebaseio.com/posts.json', {
             title: payload.title,
             author: payload.author,
@@ -81,15 +81,38 @@ const createStore = () => {
         })
         commit('setLoading', false)
       },
-      editPost({ commit }, payload) {
-        return axios
+      async editPost({ commit }, payload) {
+        commit('setLoading', true)
+        const imageExt = payload.thumbnail.name.slice(
+          payload.thumbnail.name.lastIndexOf('.')
+        )
+        const fileData = await firebase
+          .storage()
+          .ref(`bg/${payload.id}${imageExt}`)
+          .put(payload.thumbnail)
+        const thumbnail = await fileData.ref.getDownloadURL()
+        axios
           .put(
             `https://nuxt-blog-85622.firebaseio.com/posts/${payload.id}.json`,
-            payload
+            {
+              title: payload.title,
+              author: payload.author,
+              description: payload.description,
+              updatedDate: payload.updatedDate,
+              thumbnail: thumbnail,
+              id: payload.id
+            }
           )
-          .then(response => {
-            console.log(response)
-            commit('editPost', payload)
+          .then(() => {
+            commit('editPost', {
+              title: payload.title,
+              author: payload.author,
+              description: payload.description,
+              updatedDate: payload.updatedDate,
+              id: payload.id,
+              thumbnail: thumbnail
+            })
+            commit('setLoading', false)
           })
       }
     },

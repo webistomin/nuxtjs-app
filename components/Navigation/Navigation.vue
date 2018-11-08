@@ -28,12 +28,6 @@
       <v-btn
         flat
         nuxt
-        to="/about">
-        About
-      </v-btn>
-      <v-btn
-        flat
-        nuxt
         to="/admin">
         <v-icon
           dark
