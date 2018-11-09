@@ -20,8 +20,10 @@
       />
       <v-btn
         :disabled="!valid"
+        :loading="loading"
         color="success"
         type="submit"
+        class="mb-2"
       >
         <v-icon
           dark
@@ -62,6 +64,11 @@ export default {
       v => /.+@.+/.test(v) || 'E-mail must be valid'
     ]
   }),
+  computed: {
+    loading() {
+      return this.$store.getters.loading
+    }
+  },
   methods: {
     onSubmit() {
       const user = {
@@ -93,5 +100,6 @@ export default {
 .v-btn {
   margin: 0 !important;
   margin-right: 10px !important;
+  margin-bottom: 10px !important;
 }
 </style>

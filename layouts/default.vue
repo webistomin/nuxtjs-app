@@ -13,7 +13,7 @@
     <v-footer
       color="#548eaa"
       dark>
-      <span>&copy; 2018</span>
+      <div class="text-xs-center copyright">&copy; 2018 Habr</div>
     </v-footer>
     <template v-if="error">
       <v-snackbar
@@ -52,3 +52,8 @@ export default {
   }
 }
 </script>
+<style>
+.copyright {
+  width: 100%;
+}
+</style>

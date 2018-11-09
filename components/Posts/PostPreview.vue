@@ -15,7 +15,9 @@
       <v-card-title primary-title>
         <div>
           <h3 class="headline mb-0">{{ title }}</h3>
-          <div class="card__preview">{{ previewText }}</div>
+          <div
+            class="card__preview"
+            v-html="previewText.slice(0,30) + '...'"/>
         </div>
       </v-card-title>
     </v-card>
