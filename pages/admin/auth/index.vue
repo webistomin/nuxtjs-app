@@ -7,6 +7,7 @@
       <v-text-field
         v-model="email"
         :rules="emailRules"
+        :validate-on-blur="true"
         label="E-mail"
         required
       />
@@ -14,6 +15,7 @@
         v-model="password"
         :rules="passwordRules"
         :counter="10"
+        :validate-on-blur="true"
         label="Password"
         required
         class="mb-5"

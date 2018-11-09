@@ -7,21 +7,25 @@
       <v-layout
         row
         wrap>
-        <form
+        <v-form
+          v-model="valid"
           class="post-edit__form"
           @submit.prevent="onSubmit">
           <v-text-field
             v-model="title"
+            :rules="titleRules"
             label="Title"
             required
           />
           <v-text-field
             v-model="author"
+            :rules="authorRules"
             label="Author"
             required
           />
           <v-textarea
             v-model="description"
+            :rules="descriptionRules"
             name="input-7-1"
             label="Description"
           />
@@ -39,6 +43,8 @@
             </v-btn>
             <input
               ref="fileInput"
+              :rules="fileRules"
+              required
               type="file"
               style="display: none"
               accept="image/*"
@@ -54,6 +60,7 @@
           </v-flex>
           <v-btn
             :loading="loading"
+            :disabled="!valid || !thumbnail"
             color="success"
             type="submit">
             <v-icon
@@ -67,7 +74,7 @@
               dark
               left>cancel</v-icon>
             Cancel</v-btn>
-        </form>
+        </v-form>
       </v-layout>
     </v-container>
   </section>
@@ -87,7 +94,19 @@ export default {
       thumbnail: '',
       author: '',
       description: '',
-      image: null
+      image: null,
+      valid: false,
+      titleRules: [
+        v => !!v || 'Title is required',
+        v => v.length >= 5 || 'Title must be more or equal than 5 characters'
+      ],
+      authorRules: [
+        v => !!v || 'Author name is required',
+        v =>
+          v.length >= 5 || 'Author name must be more or equal than 5 characters'
+      ],
+      descriptionRules: [v => !!v || 'Description is required'],
+      fileRules: [v => !!v || 'Image is required']
     }
   },
   computed: {

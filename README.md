@@ -5,7 +5,7 @@ https://nuxt-blog-85622.firebaseapp.com
 
 [![Build status][travis-image]][travis-url] [![dependencies Status](https://david-dm.org/webistomin/nuxtjs-app/status.svg)](https://david-dm.org/webistomin/nuxtjs-app) [![Dependency status][dependency-image]][dependency-url] 
 
-
+При открытии приложения отображается список последних новостей. Для просмотра всех новостей необходимо перейти по ссылке "Blog". Для редактирования и создания новостей, необходимо перейти на вкладку "Admin". Если администратор не авторизован, то его редиректнет на форму логина или регистрации. После логина, появляется возможность управлять постами. Хранилище постов, регистрация, авторизация реализована через Firebase.
 
 <img src='example.gif'>
 
